@@ -34,9 +34,9 @@ const MainStoryGrid = () => {
         <SectionTitle>Opinion</SectionTitle>
         <OpinionStoryList>
           {OPINION_STORIES.map((story, index) => (
-            <VerticalStoryWrapper key={story.id} opinion={true}>
+            <VerticalOpinionStoryWrapper key={story.id} opinion={true}>
               <OpinionStory  {...story} />
-            </VerticalStoryWrapper>
+            </VerticalOpinionStoryWrapper>
           ))}
         </OpinionStoryList>
       </OpinionSection>
@@ -62,10 +62,11 @@ const Wrapper = styled.div`
     'main-story secondary-stories'
     'advertisement advertisement'
     'opinion-stories opinion-stories';
+    grid-template-columns: 2fr 1fr;
     gap: 48px 0;
   }
   @media ${QUERIES.laptopAndUp}{
-    grid-template-columns: 510px 410px 1fr;
+    grid-template-columns: 5fr 4fr 3fr;
     grid-template-areas:
     'main-story secondary-stories opinion-stories'
     'main-story advertisement advertisement';
@@ -79,15 +80,17 @@ const VerticalStoryWrapper = styled.div`
     padding-bottom: 16px;
     margin-bottom: 16px;
   }
+`
+
+const VerticalOpinionStoryWrapper = styled(VerticalStoryWrapper)`
+  flex:1;
   @media ${QUERIES.tabletOnly}{
     &:not(:last-child){
-    border-bottom: ${({opinion}) => opinion && 'none'}; 
-    padding-bottom: ${({opinion}) => opinion && '0'};
-    margin-bottom: ${({opinion}) => opinion && '0'};
+    border-bottom: revert; 
+    padding-bottom: revert;
+    margin-bottom: revert;
   }
-  }
-  
-`
+`  
 
 const MainStorySection = styled.section`
   grid-area: main-story;
@@ -115,11 +118,7 @@ const StoryList = styled.div`
 
 const OpinionStoryList = styled(StoryList)`
   @media ${QUERIES.tabletOnly}{
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    justify-items: center;
-    justify-content: center;
-    gap: 32px;
+    flex-direction: row;
   }
 `
 
