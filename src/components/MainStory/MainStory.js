@@ -47,11 +47,14 @@ const Abstract = styled.p`
   white-space: pre-wrap;
   display: -webkit-box;
   -webkit-box-orient: vertical;
-  -webkit-line-clamp: 9;
+  -webkit-line-clamp: 8;
   overflow: hidden;
 
   @media ${QUERIES.tabletAndUp}{
-    -webkit-line-clamp: 12;
+    -webkit-line-clamp: 16;
+  }
+  @media ${QUERIES.laptopAndUp}{
+    -webkit-line-clamp: 9;
   }
 `;
 
